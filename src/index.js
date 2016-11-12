@@ -2,12 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import canonize from './canonize';
 
-// function setHeaders() {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.writeHead(200, {'Content-type' : 'text/html'});
-// }
-
 const app = express();
 app.use(cors());
 app.get('/task2b', (req, res) => {
@@ -15,12 +9,12 @@ console.log(req.query.fullname);
   const username = canonize(req.query.fullname);
   const answer =  req.query.fullname;
   const lenUsername = username.length - 1;
-  const fullnameSplit =  req.query.fullname.split(' +').length - 1;//.reverse();
+  //const fullnameSplit =  req.query.fullname.split(' +').length - 1;//.reverse();
   //let Split01 =  req.query.fullname.match('[а-яА-Яa-zA-Z]+');
   //
   //let lastName = username[0];
 
-  console.log(`-${answer}-${fullnameSplit}-|${username[0]}|\/${lenUsername}}`);
+  console.log(`-${answer}-|${username[0]}|\/${lenUsername}}`);
   if (lenUsername > 2 || answer === '' || answer.search('[0-9\._\/]') != -1) {
         // setHeaders();
         res.end(`Invalid fullname`);
