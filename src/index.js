@@ -13,20 +13,23 @@ app.use(cors());
 app.get('/task2b', (req, res) => {
 console.log(req.query.fullname);
   const username = canonize(req.query.fullname);
-  const answer =  username[0];
-  let fullnameSplit =  req.query.fullname.split(' ').length - 1;//.reverse();
+  const answer =  req.query.fullname;
+  const lenUsername = username.length - 1;
+  const fullnameSplit =  req.query.fullname.split(' +').length - 1;//.reverse();
+  //let Split01 =  req.query.fullname.match('[а-яА-Яa-zA-Z]+');
+  //
   //let lastName = username[0];
 
-  //console.log(`${lastName},|${fullnameSplit},|${answer}`);
-  if (fullnameSplit >= 3 || answer === '' || answer.search('[0-9\._\/]') != -1) {
+  console.log(`-${answer}-${fullnameSplit}-|${username[0]}|\/${lenUsername}}`);
+  if (lenUsername > 2 || answer === '' || answer.search('[0-9\._\/]') != -1) {
         // setHeaders();
         res.end(`Invalid fullname`);
-  } else if (fullnameSplit === 0) {
+  } else if (lenUsername === 0) {
         // setHeaders();
         const lastName = username[0];
         res.end(`${lastName}`);
 
-  } else if (fullnameSplit === 1) {
+  } else if (lenUsername === 1) {
         const lastName = username[1];
         const name = username[0];
         const name1Symbol = name.split(``)[0];;
